@@ -3,16 +3,72 @@
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
-      window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
-      };
+	 // function to toggle the setInterval
+	 var spam = 1;
+	 function stopSpam(){
+			if(spam == 1){
+				spam = 0;
+				document.getElementById("spamButton").style.background = "red";
+			}
+			else{
+				spam = 1;
+				document.getElementById("spamButton").style.background = "#576";
+			}
+		}
+	// resets the page to display new emails
+	function logout(){
+		window.location.href = "index.html";
+	}
+     window.onload = function(){
+		var count = 10;
+		// Function to display the message to the table
+		function addMessage(message){
+			//Gets the table id and inserts a new row and 3 new cells into the table
+			var table = document.getElementById("emailData");
+			var row = table.insertRow(0);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			// Add the info of the email to the table row:
+			cell1.innerHTML = message.sender;
+			cell2.innerHTML = message.subject;
+			cell3.innerHTML = message.date;
+			// Adds a function to each row that sends the user to a new webpage with the message's body
+			row.onclick = (function() {return function() {localStorage.setItem("sender", message.sender); 
+													  localStorage.setItem("subject", message.subject);  
+													  localStorage.setItem("date", message.date);
+													  localStorage.setItem("body", message.body);
+													  window.location.href = "body.html";}})();
+			// Updates the count of the inbox
+			document.getElementById("emailCount").innerHTML ="Inbox: " + count;
+		}
+		// Displays the initial Emails from the array	
+		for (var z = 0; z < 10; z++){
+			var message = geemails[z]; 
+			addMessage(message);
+		}
+		// Generates a new email every 5 seconds if spam is turned on
+			setInterval(function(){ 
+				if(spam == 1){
+					var newMail = getNewMessage(); 
+					// Updates the email count
+					count++; 
+					addMessage(newMail);
+				}
+			}, 5000);
+	
+    };
     </script>
 	</head>
+	<title> Gee Mail </title>
+	<h1 Align = "Center"> Gee Mail </h1>
 	<body>
-		<div class="container" id="main">
-			Build Me!
-		</div>
+	<button id="spamButton" Align = "Left"  type="button" onclick="stopSpam()" >Stop Spam</button>
+	<button id="logoutButton" Align = "Right"  type="button" onclick="logout()" >Logout</button>
+	<table Align = "Center">
+	<tr><td COLSPAN='3' id="emailCount"></td></tr>
+	</table>
+	<table Align = "Center"   id ="emailData" >
+	</table>
 	</body>
-</html>
+</html>>

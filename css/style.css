@@ -1,0 +1,46 @@
+body {
+  background-color:lightblue;
+}
+
+h1 {
+  color: Blue;
+	text-align: center;
+	font-size: 250%;
+}
+
+
+tr{	 
+  color: white;
+	line-height: 3.5;
+	font-family: Arial, Helvetica, sans-serif;
+	background: #576; 
+	
+}
+
+table{
+	border: 1px solid black;
+}
+
+
+button{
+	color: white;
+	background: #576;
+}
+
+button:hover{
+	background-color: red;
+	cursor:pointer;
+}
+
+#emailCount{
+	color: white;
+	line-height: 3.5;
+	font-family: Arial, Helvetica, sans-serif;
+	background: #black; 
+	font-size: 150%;
+}
+
+#emailData tr:hover {
+    background-color: red;
+		cursor:pointer;
+  }

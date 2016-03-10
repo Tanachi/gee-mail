@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<link href="css/style.css" rel="stylesheet" media="screen">
+    <script>
+		// Webpage to display all contents of the clicked email that can go back to the inbox with a button.
+        window.onload = function(){
+			// Loads the value of the messages to the webpage
+			document.getElementById("subjectH").innerHTML =localStorage.subject;
+			document.getElementById("subjectTitle").innerHTML = localStorage.subject;
+			document.getElementById("subject").innerHTML = "Subject: " + localStorage.subject;
+			document.getElementById("date").innerHTML = "Date: " + localStorage.date;
+			document.getElementById("sender").innerHTML = "Sender: "+ localStorage.sender;
+			document.getElementById("body").innerHTML = localStorage.body;
+		};
+		// Removes the values from local storage and go back to the inbox 
+		function goBack(){
+			localStorage.removeItem("subject");
+			localStorage.removeItem("date");
+			localStorage.removeItem("sender");
+			localStorage.removeItem("body");
+			window.history.back();
+		}
+    </script>
+	</head>
+	<title id = "subjectTitle"></title>
+	<h1 id="subjectH" Align = "Center"></h1>
+	<body>
+		<button Align = "Left"  type="button" onclick="goBack()">Go to Inbox</button>
+		<table Align = "Center">
+			<tr><td id="date"></td></tr>
+			<tr><td id="subject"></td></tr>
+			<tr><td id="sender"></td></tr>
+			<tr><td id="body"></td></tr>	
+		</table>
+	</body>
+</html>

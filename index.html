@@ -1,25 +1,25 @@
 <html>
-	<head>
-		<script src="js/mail-generator.js"></script>
-		<link href="css/style.css" rel="stylesheet" media="screen">
+    <head>
+	<script src="js/mail-generator.js"></script>
+	<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
 	 // function to toggle the setInterval
-	 var spam = 1;
-	 function stopSpam(){
-			if(spam == 1){
-				spam = 0;
-				document.getElementById("spamButton").style.background = "red";
-			}
-			else{
-				spam = 1;
-				document.getElementById("spamButton").style.background = "#576";
-			}
+	var spam = 1;
+	function stopSpam(){
+		if(spam == 1){
+			spam = 0;
+			document.getElementById("spamButton").style.background = "red";
 		}
+		else{
+			spam = 1;
+			document.getElementById("spamButton").style.background = "#576";
+		}
+	}
 	// resets the page to display new emails
 	function logout(){
 		window.location.href = "index.html";
 	}
-     window.onload = function(){
+     	window.onload = function(){
 		var count = 10;
 		// Function to display the message to the table
 		function addMessage(message){
@@ -35,10 +35,10 @@
 			cell3.innerHTML = message.date;
 			// Adds a function to each row that sends the user to a new webpage with the message's body
 			row.onclick = (function() {return function() {localStorage.setItem("sender", message.sender); 
-													  localStorage.setItem("subject", message.subject);  
-													  localStorage.setItem("date", message.date);
-													  localStorage.setItem("body", message.body);
-													  window.location.href = "body.html";}})();
+				localStorage.setItem("subject", message.subject);  
+				localStorage.setItem("date", message.date);
+				localStorage.setItem("body", message.body);
+				window.location.href = "body.html";}})();
 			// Updates the count of the inbox
 			document.getElementById("emailCount").innerHTML ="Inbox: " + count;
 		}
@@ -48,14 +48,14 @@
 			addMessage(message);
 		}
 		// Generates a new email every 5 seconds if spam is turned on
-			setInterval(function(){ 
-				if(spam == 1){
-					var newMail = getNewMessage(); 
-					// Updates the email count
-					count++; 
-					addMessage(newMail);
-				}
-			}, 5000);
+		setInterval(function(){ 
+			if(spam == 1){
+				var newMail = getNewMessage(); 
+				// Updates the email count
+				count++; 
+				addMessage(newMail);
+			}
+		}, 5000);
 	
     };
     </script>
